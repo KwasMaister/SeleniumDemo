@@ -8,21 +8,22 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage {
 
     private WebDriver driver;
-    public HomePage (WebDriver driver){
+
+    public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    @FindBy (id = "menu-item-20")
+    @FindBy(id = "menu-item-20")
     private WebElement cart;
 
-    @FindBy (id = "menu-item-21")
+    @FindBy(id = "menu-item-21")
     private WebElement shop;
 
-    @FindBy (id = "menu-item-22")
+    @FindBy(id = "menu-item-22")
     private WebElement myAccount;
 
-    public MyAccountPage openMyAccountPage (){
+    public MyAccountPage openMyAccountPage() {
         myAccount.click();
         return new MyAccountPage(driver);
     }
