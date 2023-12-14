@@ -6,18 +6,21 @@ import com.aventstack.extentreports.Status;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HomePage;
 import pl.seleniumdemo.utils.SeleniumHelper;
+import pl.seleniumdemo.utils.TestListener;
 
 import java.io.IOException;
 
+@Listeners(value = {TestListener.class})
 public class RegisterTest extends BaseTest {
 
     @Test
     public void registerValidUserTest() {
 
-        int randomNumber = (int) (Math.random()*10000);
+        int randomNumber = (int) (Math.random() * 10000);
 
         String getWelcomeText = new HomePage(driver).openMyAccountPage()
                 .registerUserValidDate("nazwa" + randomNumber + "@nazwa.pl", "123DudixPatrzy123!#")
@@ -25,11 +28,12 @@ public class RegisterTest extends BaseTest {
                 .getText();
 
         Assert.assertTrue(getWelcomeText.contains("Hello nazwa" + randomNumber));
+
     }
 
     @Test
     public void registerUserWithTheSameEmailAddresTest() {
-        WebElement getError =  new HomePage(driver).openMyAccountPage()
+        WebElement getError = new HomePage(driver).openMyAccountPage()
                 .registerUserInvalidDate("test123@com.pl", "test123@com.pl")
                 .getError();
 
@@ -39,15 +43,15 @@ public class RegisterTest extends BaseTest {
 
     @Test
     public void registerUserWithInvalidEmailAddress() {
-            WebElement getError = new HomePage(driver).openMyAccountPage()
-                    .registerUserInvalidDate("test123@test", "test123@com.pl")
-                    .getError();
+        WebElement getError = new HomePage(driver).openMyAccountPage()
+                .registerUserInvalidDate("test123@test", "test123@com.pl")
+                .getError();
 
-            Assert.assertEquals("Error: Please provide a valid email address.", getError.getText());
+        Assert.assertEquals("Error: Please provide a valid email address.", getError.getText());
     }
 
     @Test
-    public void registerUserWithVeryWeakPassword () {
+    public void registerUserWithVeryWeakPassword() {
 
         int randomNumber = (int) (Math.random() * 1000);
 
@@ -61,7 +65,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void registerUserWithWeakPassword () {
+    public void registerUserWithWeakPassword() {
         int randomNumber = (int) (Math.random() * 1000);
 
         String passwordError = new HomePage(driver).openMyAccountPage()
@@ -73,7 +77,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void registerUserWithMediumPassword () {
+    public void registerUserWithMediumPassword() {
         int randomNumber = (int) (Math.random() * 1000);
 
         String passwordError = new HomePage(driver).openMyAccountPage()
@@ -85,7 +89,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void registerUserWithStrongPassword () {
+    public void registerUserWithStrongPassword() {
         int randomNumber = (int) (Math.random() * 1000);
 
         String passwordError = new HomePage(driver).openMyAccountPage()
@@ -97,18 +101,17 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void checkingHintAboutPassword () throws IOException {
+    public void checkingHintAboutPassword() throws IOException {
 
         ExtentTest test = extentReports.createTest("Checking Hit About Password");
         int randomNumber = (int) (Math.random() * 1000);
 
+        test.log(Status.PASS, "Setting bad Password");
         String hintAboutPassword = new HomePage(driver).openMyAccountPage()
                 .checkingPassword("emailtest" + randomNumber + "@com.pl", "123456789")
                 .getHintAboutPassword()
                 .getText();
 
-        test.log(Status.PASS, "Setting bad Password");
         Assert.assertTrue(hintAboutPassword.contains("Hint: The password should be at least twelve characters long."));
-        test.log(Status.PASS, "Assertions passed", SeleniumHelper.getScreenshot(driver));
     }
 }
