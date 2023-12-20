@@ -19,7 +19,7 @@ public class CartTest extends BaseTest {
                 .openShop()
                 .openProduct(title)
                 .addProductToCart()
-                .infoProductAddToCart()
+                .infoProductAddToCart();
 
         String alert = addProductToCart.getText();
         Assert.assertTrue(alert.contains(title));
