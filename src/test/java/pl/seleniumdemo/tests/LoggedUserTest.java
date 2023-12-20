@@ -24,7 +24,7 @@ public class LoggedUserTest extends BaseTest {
                 .logoutButton()
                 .loginUserValidDate(email, "3123123!@#!@HaszTaQ32");
 
-        return register;
+        return new LoggedUserPage(driver);
     }
 
     @Test
@@ -45,12 +45,10 @@ public class LoggedUserTest extends BaseTest {
     @Test
     public void accountDetailsSaveChangesWitoutFirstNameAndLastName() {
 
-        registerAndLogIn()
+        List<String> errors = registerAndLogIn()
                 .accountDetails()
-                .saveChanges();
-
-        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
-        List<String> errors = loggedUserPage.getAccountDetailsErrorsButton();
+                .saveChanges()
+                .getAccountDetailsErrorsButton();
 
         String firstError = errors.get(0);
         String secondError = errors.get(1);
@@ -61,29 +59,29 @@ public class LoggedUserTest extends BaseTest {
 
     @Test
     public void accountDetailsSaveFirstNameAndLastName() {
-        registerAndLogIn()
+
+        String info = registerAndLogIn()
                 .accountDetails()
                 .firstName("Jacob")
                 .lastName("Kowalczyk")
-                .saveChanges();
-
-        LoggedUserPage successChanged = new LoggedUserPage(driver);
-        String info = successChanged.getSuccessfullInfo().getText();
+                .saveChanges()
+                .getSuccessfullInfo()
+                .getText();
 
         Assert.assertEquals("Account details changed successfully.", info);
     }
 
     @Test
     public void accountDetailsChangeDisplayName() {
-        registerAndLogIn()
+
+        String welcomeText = registerAndLogIn()
                 .accountDetails()
                 .firstName("Jan")
                 .lastName("Kowalski")
                 .displayName("Display name test")
-                .saveChanges();
-
-        LoggedUserPage loggedUserPage = new LoggedUserPage(driver);
-        String welcomeText = loggedUserPage.getWelcomeText().getText();
+                .saveChanges()
+                .getWelcomeText()
+                .getText();
 
         Assert.assertTrue(welcomeText.contains("Hello Display name test"));
     }
