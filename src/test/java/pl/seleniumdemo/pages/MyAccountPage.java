@@ -1,5 +1,6 @@
 package pl.seleniumdemo.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,6 +56,11 @@ public class MyAccountPage {
         return error;
     }
 
+//    public void executeJavaScriptUsingRegButtonClick(){
+//        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+//        javascriptExecutor.executeScript("arguments[0].click();", regButton);
+//    }
+
     public LoggedUserPage registerUserValidDate(String email, String password) {
         registerUser(email, password);
         return new LoggedUserPage(driver);
@@ -68,12 +74,16 @@ public class MyAccountPage {
     private void registerUser(String email, String password) {
         regEmailAddress.sendKeys(email);
         regPassword.sendKeys(password);
-        regButton.click();
+//        regButton.click();
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+        javascriptExecutor.executeScript("arguments[0].click();", regButton);
     }
 
     public MyAccountPage checkingPassword(String email, String passowrd) {
         regEmailAddress.sendKeys(email);
         regPassword.sendKeys(passowrd);
+//        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
+//        javascriptExecutor.executeScript("arguments[0].click();", regButton);
         return this;
     }
 
