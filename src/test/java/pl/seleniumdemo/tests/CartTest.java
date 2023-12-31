@@ -113,6 +113,6 @@ public class CartTest extends BaseTest {
                 .shoppingCartIcon()
                 .getInfoAfterDeleteProductByUsingIcon();
 
-        System.out.println(deleteProductFromIcon.getText());
+        Assert.assertEquals("No products in the cart.", deleteProductFromIcon.getText());
     }
 }
