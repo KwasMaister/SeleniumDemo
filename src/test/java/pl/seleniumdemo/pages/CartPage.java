@@ -21,10 +21,41 @@ public class CartPage {
     @FindBy(xpath = "//td[@class='product-name']")
     private List<WebElement> productsName;
 
+    @FindBy(xpath = "//a[@class='checkout-button button alt wc-forward']")
+    private WebElement proceedToCheckoutButton;
+
+    @FindBy(className = "remove")
+    private WebElement deleteProductFromCartButton;
+
+    @FindBy(className = "cart-empty")
+    private WebElement infoAboutEmptyCart;
+
+    @FindBy(xpath = "//tr[@class='order-total']//span[@class='woocommerce-Price-amount amount']")
+    private WebElement infoAboutTotalPrice;
+
+
     public List<String> getProductsName() {
         return productsName.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
+    }
+
+    public BillingDetailsPage checkout() {
+        proceedToCheckoutButton.click();
+        return new BillingDetailsPage(driver);
+    }
+
+    public CartPage deleteProductFromCart() {
+        deleteProductFromCartButton.click();
+        return this;
+    }
+
+    public WebElement getInfoAboutTotalPrice() {
+        return infoAboutTotalPrice;
+    }
+
+    public WebElement infoAboutEmptyCartAfterDeleteProduct() {
+        return infoAboutEmptyCart;
     }
 
 }

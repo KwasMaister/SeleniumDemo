@@ -12,24 +12,25 @@ import pl.seleniumdemo.utils.SeleniumHelper;
 public class SearchPage {
 
     private WebDriver driver;
+
     public SearchPage(WebDriver driver) {
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 5), this);
         this.driver = driver;
     }
 
-    @FindBy (xpath = "//div[@class='entry-content']/p")
+    @FindBy(xpath = "//div[@class='entry-content']/p")
     private WebElement nothingFoundInfo;
 
-    @FindBy (id = "s-658c750fde498")
+    @FindBy(id = "s-658c750fde498")
     private WebElement searchInput;
 
-    @FindBy (className = "archive-title")
+    @FindBy(className = "archive-title")
     private WebElement headingTitle;
 
-    @FindBy (xpath = "//a[@class='czr-title' and text()='Java Selenium WebDriver']")
+    @FindBy(xpath = "//a[@class='czr-title' and text()='Java Selenium WebDriver']")
     private WebElement productJavaSeleniumWebDriver;
 
-    public SearchPage searchProduct (String productName){
+    public SearchPage searchProduct(String productName) {
 
         String locator = "s-658fca48bf1b8";
         SeleniumHelper.waitForElementToBeClickable(driver, By.id(locator));
@@ -38,15 +39,15 @@ public class SearchPage {
         return this;
     }
 
-    public WebElement infoAboutNothingFound () {
+    public WebElement infoAboutNothingFound() {
         return nothingFoundInfo;
     }
 
-    public WebElement getHeadingTitle () {
+    public WebElement getHeadingTitle() {
         return headingTitle;
     }
 
-    public WebElement getProductJavaSeleniumWebDriver () {
+    public WebElement getProductJavaSeleniumWebDriver() {
         return productJavaSeleniumWebDriver;
     }
 }
