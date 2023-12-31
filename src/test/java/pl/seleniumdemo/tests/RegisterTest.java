@@ -1,15 +1,12 @@
 package pl.seleniumdemo.tests;
 
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pl.seleniumdemo.pages.HomePage;
-import pl.seleniumdemo.utils.SeleniumHelper;
 import pl.seleniumdemo.utils.TestListener;
 
 import java.io.IOException;
@@ -23,7 +20,7 @@ public class RegisterTest extends BaseTest {
         int randomNumber = (int) (Math.random() * 10000);
 
         String getWelcomeText = new HomePage(driver).openMyAccountPage()
-                .registerUserValidDate("nazwa" + randomNumber + "@nazwa.pl", "123DudixPatrzy123!#")
+                .registerUserValidDate("nazwa" + randomNumber + "@nazwa.pl", "123RandomPassword123!#")
                 .getWelcomeText()
                 .getText();
 

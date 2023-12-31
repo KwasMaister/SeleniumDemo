@@ -9,7 +9,7 @@ import pl.seleniumdemo.pages.SearchPage;
 public class SearchTest extends BaseTest {
 
     @Test
-    public void  nothingFoundProduct () {
+    public void nothingFoundProduct() {
 
         String productName = "Test";
 
@@ -27,7 +27,7 @@ public class SearchTest extends BaseTest {
     }
 
     @Test
-    public void foundtheProduct () {
+    public void foundtheProduct() {
 
         String productName = "Selenium";
 

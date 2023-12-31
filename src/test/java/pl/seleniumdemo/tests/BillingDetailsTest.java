@@ -11,7 +11,7 @@ import java.util.List;
 
 public class BillingDetailsTest extends BaseTest {
 
-    private BillingDetailsPage checkout () {
+    private BillingDetailsPage checkout() {
         BillingDetailsPage billingDetailsPage = new HomePage(driver)
                 .openShop()
                 .openProduct("Java Selenium WebDriver")
@@ -39,8 +39,8 @@ public class BillingDetailsTest extends BaseTest {
     }
 
     @Test
-    public void couponTest(){
-        WebElement couponErrorAlert =  checkout()
+    public void couponTest() {
+        WebElement couponErrorAlert = checkout()
                 .enterYourCoupon()
                 .sendCoupon("testing coupon")
                 .applyCoupon()
