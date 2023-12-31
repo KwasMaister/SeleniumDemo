@@ -33,4 +33,10 @@ public class SeleniumHelper {
         return path;
     }
 
+    public static void waitForElementToBeClickable(WebDriver driver, By locator) {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
 }
+
