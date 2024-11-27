@@ -12,7 +12,7 @@ W szczególności, projekt został stworzony, aby pokazać moje umiejętności w
 - Pisania testów automatycznych.
 - Implementacji wzorca Page Object Model, ułatwiającego modularność i utrzymanie testów.
 - Integracji z Mavenem i wykorzystania WebDriverManager.
-- Tworzenia i zarządzania scenariuszami testowymi (szczegóły znajdziesz w pliku [SCENARIUSZ.md](SCENARIUSZ.md)).
+- Tworzenia i zarządzania scenariuszami testowymi (szczegóły znajdziesz w pliku [SCENARIO.md](SCENARIO.md)).
 
 Testy można łatwo rozszerzyć o nowe scenariusze, co sprawia, że projekt jest elastyczny i gotowy do dalszego rozwoju. 
 
